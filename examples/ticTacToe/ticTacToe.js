@@ -66,12 +66,14 @@ function isGameOver(gameBoard, currentPlayerSymbol) {
     }
     // 2. check if the board is full
     if (!gameBoard.some(element => element === null)) {
+        alert('The game has resulted in a draw!')
         return true;
     }
 
     // Return: winner/draw OR game is still in progress
     return false;
 }
+
 
 function ticTacToe() {
     // State space 
