@@ -1,27 +1,35 @@
 function getUserInput(nextPlayerSymbol, gameBoard) {
-    let visualGameBoard = gameBoard.slice();
-    for ( let index in visualGameBoard) {
-        if ( visualGameBoard[index] === null ) {
-            visualGameBoard[index] = index;
-        }
+    let visualGameBoard = gameBoard.slice(); // initialize an array for visualizing current state of gameBoard
+    for ( let index = 0; index < visualGameBoard.length; index++) {
+        // if no player has placed their mark on the this position, then the coordinate position will show as the current state of the gameBoard
+        visualGameBoard[index] = visualGameBoard[index] ?? index+1;
     }
-    return prompt(`Input integer from 0 to 8 representing next move:\n${visualGameBoard[0]} ${visualGameBoard[1]} ${visualGameBoard[2]}\n${visualGameBoard[3]} ${visualGameBoard[4]} ${visualGameBoard[5]}\n${visualGameBoard[6]} ${visualGameBoard[7]} ${visualGameBoard[8]}`);
+    return +prompt(`Input integer from 1 to 9 representing next move:\n${visualGameBoard[0]} ${visualGameBoard[1]} ${visualGameBoard[2]}\n${visualGameBoard[3]} ${visualGameBoard[4]} ${visualGameBoard[5]}\n${visualGameBoard[6]} ${visualGameBoard[7]} ${visualGameBoard[8]}`);
 }
 
-function isMoveValid(coordinates, gameBoard) {
-    return gameBoard[coordinates] === null;
+function isMoveValid(coordinate, gameBoard) {
+    // coordinate must be an integer
+    if ( ! Number.isInteger(coordinate) ) {
+        return false;
+    }
+    // coordinate must be between 1 and 9 inclusive
+    if ( coordinate < 1 || coordinate > 9 ) {
+        return false;
+    }
+    // If there is null at the coordinate, then the move is valid
+    return gameBoard[coordinate-1] === null;
 }
 
 function makeAMove(gameBoard, nextPlayerSymbol) {
     // clone the game board before placing moves in it
-    let newGameBoard = gameBoard.slice();
-    let coordinates = '';
+    const newGameBoard = gameBoard.slice();
+    let coordinate = '';
     do {
-        coordinates = getUserInput(nextPlayerSymbol, gameBoard);
-        console.log(coordinates);
-    } while ( !isMoveValid(coordinates, gameBoard) );
+        coordinate = getUserInput(nextPlayerSymbol, gameBoard);
+        console.log(coordinate);
+    } while ( !isMoveValid(coordinate, gameBoard) );
     console.log('setting new coordinate');
-    newGameBoard[coordinates] = nextPlayerSymbol;
+    newGameBoard[coordinate-1] = nextPlayerSymbol;
 
     return newGameBoard;
 }
