@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="tokenConversion.js" async></script>
+</head>
+<body>
+    <h2>Token conversion rate:</h2>
+    <h3>Convert from:
+        <select id="select1">
+            <option value="BTC">BTC</option>
+            <option value="ETH">ETH</option>
+            <option value="USDT">USDT</option>
+        </select>
+    </h3>
+    <h3> to:
+        <select id="select2">
+            <option value="BTC">BTC</option>
+            <option value="ETH">ETH</option>
+            <option value="USDT">USDT</option>
+        </select>
+    </h3>
+
+    <button onclick="getOption()" class="js-check-option" disabled>Check option</button>    
+
+    <h3>
+        <p id="rate">1 BTC = 1 BTC</p>
+    </h3>
+
+</body>
+</html>
